@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djonza trucker job</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu-container">
+        <div class="sidebar">
+            <ul>
+                <li id="dashboard" class="active">Dashboard</li>
+                <li id="missions">Missions</li>
+                <li id="admin">Admin Settings</li>
+            </ul>
+        </div>
+
+        <div class="menu">
+            <h1>Missions</h1>
+            <div id="missionsList" class="missions-list"></div>
+            <button id="close">Close</button>
+        </div>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" >&times;</span>
+                <h2>Edit Player</h2>
+                <form id="editPlayerForm">
+                    <label for="playerLevel">Level:</label>
+                    <input type="number" id="playerLevel" name="level" required><br><br>
+        
+                    <label for="playerExperience">Experience:</label>
+                    <input type="number" id="playerExperience" name="experience" required><br><br>
+        
+                    <label for="playerEarnings">Total Earnings:</label>
+                    <input type="number" id="playerEarnings" name="totalEarnings" required><br><br>
+        
+                    <label for="playerKilometers">Kilometers Traveled:</label>
+                    <input type="number" id="playerKilometers" name="kilometers" required><br><br>
+        
+                    <label for="playerMissions">Missions Completed:</label>
+                    <input type="number" id="playerMissions" name="completedMissions" required><br><br>
+        
+                    <input type="hidden" id="playerIdentifier" name="identifier">
+                    <button type="submit" class="save-button">Save</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

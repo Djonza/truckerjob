@@ -1,0 +1,14 @@
+{
+    "title": "Trucker",
+    "start_job": "Open trucker menu.",
+    "end_job": "Finish job.",
+    "deliver": "Deliver",
+    "delivered": "You have delivered products.",
+    "return_back": "Return back to trucker company.",
+    "mission_completed": "Mission has been completed.",
+    "vehicle_not_near": "You are not near your company vehicle",
+    "no_vehicle_to_be_deleted": "No vehicle to be deleted",
+    "vehicle_ready": "Your vehicle is ready!",
+    "no_destination": "No available destinations for this mission",
+    "no_space": "Spawn point is not clear"
+}
