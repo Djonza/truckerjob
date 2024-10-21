@@ -3,7 +3,7 @@ lua54 'yes'
 game 'gta5'
 version '1.2'
 
-shared_script {'@ox_lib/init.lua', '@es_extended/imports.lua', 'locales/en.json'}
+shared_script {'@ox_lib/init.lua', '@es_extended/imports.lua'}
 server_scripts {
 	'@oxmysql/lib/MySQL.lua', 
 	'config.lua',
@@ -19,7 +19,8 @@ client_scripts {
 files {
     'nui/index.html',
     'nui/style.css',
-    'nui/script.js'
+    'nui/script.js',
+     'locales/en.json'
 }
 
 ui_page 'nui/index.html' 
