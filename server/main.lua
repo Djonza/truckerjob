@@ -48,34 +48,40 @@ lib.callback.register('trucker:getPlayerMissions', function(source)
     if not xPlayer then
         return nil
     end
+
     local identifier = xPlayer.identifier
-    local result = MySQL.query.await('SELECT level FROM player_stats WHERE identifier = ?', {identifier})
+    local result = MySQL.query.await('SELECT level FROM electrian_playerstats WHERE identifier = ?', {identifier})
 
-    if result[1] then
-        local playerLevel = result[1].level
-        local maxLevel = Config.Levels[#Config.Levels].level 
+    if not result[1] then
+        MySQL.query.await('INSERT INTO electrian_playerstats (identifier, level, experience, totalEarnings, kilometers, completedMissions) VALUES (?, ?, ?, ?, ?, ?)', 
+        {identifier, 1, 0, 0, 0, 0}) 
+        result = MySQL.query.await('SELECT level FROM electrian_playerstats WHERE identifier = ?', {identifier})
+    end
 
-        if playerLevel > maxLevel then
-            print("The player is above maximum level..")
-            return nil
-        end
-        local availableMissions = {}
-        for level, levelData in pairs(Config.MissionsLevels) do
-            if level <= playerLevel then
-                for _, mission in ipairs(levelData.missions) do
-                    table.insert(availableMissions, mission)
-                end
+    local playerLevel = result[1].level
+    local maxLevel = Config.Levels[#Config.Levels].level 
+
+    if playerLevel > maxLevel then
+        print("The player is above maximum level..")
+        return nil
+    end
+
+    local availableMissions = {}
+    for level, levelData in pairs(Config.MissionsLevels) do
+        if level <= playerLevel then
+            for _, mission in ipairs(levelData.missions) do
+                table.insert(availableMissions, mission)
             end
         end
-        if #availableMissions > 0 then
-            return { level = playerLevel, missions = availableMissions }
-        else
-            return nil 
-        end
+    end
+
+    if #availableMissions > 0 then
+        return { level = playerLevel, missions = availableMissions }
     else
         return nil 
     end
 end)
+
 
 
 
