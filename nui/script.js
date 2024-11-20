@@ -40,7 +40,7 @@ function loadMissions(missions) {
         missionElement.innerHTML = `<strong>${mission.name}</strong><p>${mission.description}</p>`;
         
         missionElement.addEventListener('click', function() {
-            fetch(`https://d-truckerjob/selectMission`, {
+            fetch(`http://${GetParentResourceName()}/selectMission`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ function loadDashboardAuto() {
         const header = document.querySelector('.menu h1');
         header.textContent = 'Dashboard';
 
-        fetch(`https://d-truckerjob/getPlayerDashboard`, {
+        fetch(`http://${GetParentResourceName()}/getPlayerDashboard`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ document.querySelectorAll('.sidebar ul li').forEach(function(item) {
         setTimeout(() => {
             if (section === 'dashboard') {
                 header.textContent = 'Dashboard';
-                fetch(`https://d-truckerjob/getPlayerDashboard`, {
+                fetch(`http://${GetParentResourceName()}/getPlayerDashboard`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ document.querySelectorAll('.sidebar ul li').forEach(function(item) {
                 });
             } else if (section === 'missions') {
                 header.textContent = 'Select Mission';
-                fetch(`https://d-truckerjob/getMissions`, {
+                fetch(`http://${GetParentResourceName()}/getMissions`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ document.querySelectorAll('.sidebar ul li').forEach(function(item) {
                 });
             } else if (section === 'admin') {
                 header.textContent = 'Admin Settings';
-                fetch(`https://d-truckerjob/getAdminData`, {
+                fetch(`http://${GetParentResourceName()}/getAdminData`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -257,7 +257,7 @@ document.getElementById('editPlayerForm').addEventListener('submit', function(e)
         kilometers: e.target.playerKilometers.value,
         completedMissions: e.target.playerMissions.value
     };
-    fetch('https://d-truckerjob/updatePlayer', {
+    fetch(`http://${GetParentResourceName()}/updatePlayer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -273,7 +273,7 @@ document.getElementById('editPlayerForm').addEventListener('submit', function(e)
 
 
 document.getElementById('close').addEventListener('click', function() {
-    fetch(`https://d-truckerjob/closeMenu`, {
+    fetch(`http://${GetParentResourceName()}/closeMenu`, {
         method: 'POST'
     });
 });
