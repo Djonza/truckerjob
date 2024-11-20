@@ -50,12 +50,12 @@ lib.callback.register('trucker:getPlayerMissions', function(source)
     end
 
     local identifier = xPlayer.identifier
-    local result = MySQL.query.await('SELECT level FROM electrian_playerstats WHERE identifier = ?', {identifier})
+    local result = MySQL.query.await('SELECT level FROM player_stats WHERE identifier = ?', {identifier})
 
     if not result[1] then
-        MySQL.query.await('INSERT INTO electrian_playerstats (identifier, level, experience, totalEarnings, kilometers, completedMissions) VALUES (?, ?, ?, ?, ?, ?)', 
+        MySQL.query.await('INSERT INTO player_stats (identifier, level, experience, totalEarnings, kilometers, completedMissions) VALUES (?, ?, ?, ?, ?, ?)', 
         {identifier, 1, 0, 0, 0, 0}) 
-        result = MySQL.query.await('SELECT level FROM electrian_playerstats WHERE identifier = ?', {identifier})
+        result = MySQL.query.await('SELECT level FROM player_stats WHERE identifier = ?', {identifier})
     end
 
     local playerLevel = result[1].level
